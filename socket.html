@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chat</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+        <style>
+            body{
+                font-size: 20px;
+                color: black;
+                background-color: green
+                
+            }
+           
+
+        </style>
+    </head>
+    <body>
+        <div id="guide">
+            <ul id="msg1">
+                <li v-for="item in notes">
+                    {{item.message}}
+
+                </li>
+                
+            </ul>
+        </div>
+        <div id="app">
+                <form method="POST" action="" id="myForm">
+                    <input name="name" type="text" placeholder="Enter your name" >
+                </form>
+                    
+                <button type="submit" class="btn btn-success" @click="submitItem($event)">Submit</button>
+        </div>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.14/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.4/socket.io.min.js"></script>
+
+        <script>
+            //create socket io instance
+            var socket = io();
+            let app= new Vue({
+                el:'#app',
+                data:{
+                    
+                },
+                methods: {
+                    submitItem(evt){
+                    evt.preventDefault();
+                    document.getElementById("myForm").submit();
+     }
+}
+            });
+            let app1=new Vue({
+                el:'#msg1',
+                data:{
+                    notes:[
+                        {message:"Welcome to UVU most exciting family feud game"},
+                        {message:"You are given a random question to answer"},
+                        {message:"Points are awarded based on correct answer"},
+                        {message:"Points to correct answers are not the same"},
+                        {message:"Points are accumulated to determine the winner"},
+                        {message:"Play with the highest points at the end of the game is declared winner"},
+                        {message:"Enter your name to play the game"},
+                        {message:"Press the enter button to register your name"},
+                        {message:"Have fun!!!!!!"}
+                ]
+
+                }
+            })
+
+            
+        </script>
+    </body>
+</html>
